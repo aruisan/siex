@@ -1,0 +1,11 @@
+body{
+}
+.ocultar{
+	display: none;
+}
+#formularioIngreso{
+	padding:2%;
+	background-color: rgba(254,254,254,.6);
+	border-radius: 2%;
+
+}

@@ -6,6 +6,9 @@ require_once('php/conexion.php');
 	$consulta = "SELECT proceso.*, tipo_proceso.nom_tipo_proceso FROM proceso, tipo_proceso WHERE id_proceso = '$id' AND tipo_proceso.id_tipo_proceso = proceso.id_tipo_proceso ";
 	$resultado = $conexion->query($consulta);
 	$result  = $resultado->fetch_object();
+
+	$sql = "SELECT * FROM documento WHERE id_proceso = $id ";
+	$archivo = $conexion->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -60,8 +63,8 @@ require_once('php/conexion.php');
 
 <div class="container">
 	<div class="row">
-		<h1 class="text-center">archivos Adjuntos</h1>
-		<a href="formArchivo" class="btn btn-warning">SUbir Archivo</a>
+		<h1 class="text-center">ARCHIVOS ADJUNTOS</h1>
+		<a href="formArchivo" class="btn btn-warning">Subir Archivo</a>
 		<div class="col-md-1"></div>
 		<div class="col-md-10">
 			<table class="myTable table">
@@ -70,17 +73,16 @@ require_once('php/conexion.php');
 						<th>Archivo</th>
 						<th>Fecha de Archivo</th>
 						<th>Fecha de Cargue</th>
+						<th>pdf</th>
 					</tr>
 				</thead>
 				<tbody>
-					<?php while($result = $procesos->fetch_object()){ ?>
+					<?php while($datos = $archivo->fetch_object()){ ?>
 					<tr>
-						<td><?= $result->num_proceso; ?></td>
-						<td><?= $result->ciudad; ?></td>
-						<td><?= $result->nom_empresa; ?></td>
-						<td><?= $result->demandante.'('.$result->cc_demandante.')'; ?></td>
-						<td><?= $result->demandado.'('.$result->cc_demandado.')'; ?></td>
-						<td><a href="views/proceso/archivo.php?proceso=<?= $result->id_proceso; ?>">Adjuntar</a></td>
+						<td><?= $datos->nom_documento; ?></td>
+						<td><?= $datos->ff_file; ?></td>
+						<td><?= $datos->ff_load; ?></td>
+						<td><a href="descargarPdf.php?pdf=<?= $datos->id_documento; ?>">pdf</a></td>
 					</tr>
 					<?php } ?>
 				</tbody>

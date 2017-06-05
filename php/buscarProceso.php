@@ -33,8 +33,8 @@ if($consulta->num_rows > 0)
 		 				<td><?= $datos2->demandante.' ('.$datos2->cc_demandante.').' ; ?></td>
 		 				<td><?= $datos2->demandado.' ('.$datos2->cc_demandado.').' ; ?></td>
 		 				<td><?= $datos2->valor; ?></td>
-		 				<td><a  class="btn btn-success" href="archivos.php?id=<?= $datos2->id_proceso; ?>">Adjuntar</a></td>
-		 			</tr>
+		 				<td><a  class="btn btn-success" href="usuarios/visitante/layouts/imagenes/index.php?id=<?= $datos2->id_proceso; ?>">Adjuntar</a></td>
+		 			</tr>										
 		 		<?php } ?>
 		 	</tbody>
 		 </table>
